@@ -22,16 +22,18 @@ const App = () => {
                 <Main>
                     <Header />
                     <Switch>
-                        <Route exact path="/">
-                            <Home />
-                        </Route>
                         <Route path="/about">
                             <About />
                         </Route>
                         <Route path="/dashboard">
                             <Dashboard />
                         </Route>
-                        <Redirect to="/" />
+                        <Route exact path="/">
+                            <Home />
+                        </Route>
+                        <Route path="*">
+                            <Redirect to="/" />
+                        </Route>
                     </Switch>
                 </Main>
             </Router>

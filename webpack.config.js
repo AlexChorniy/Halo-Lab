@@ -15,7 +15,8 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, 'public'),
-        filename: '[name].[contenthash].js'
+        filename: '[name].[contenthash].js',
+        publicPath: '/'
     },
     optimization: {
         splitChunks: {
@@ -23,7 +24,8 @@ module.exports = {
         }
     },
     devServer: {
-        port: 8080
+        port: 8080,
+        historyApiFallback: true,
     },
     resolve: {
         extensions: ['.js', '.json', 'TTF', '.jpg', '.css'],
