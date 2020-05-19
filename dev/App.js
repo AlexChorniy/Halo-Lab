@@ -44,7 +44,7 @@ const App = () => {
 
 const Main = styled.div`
     background-color: transparent;
-    width: 608px;
+    width: 70%;
     min-height: 100vh;
     margin: 0 auto;
     padding-bottom: 20px;

@@ -26,46 +26,46 @@ const Dashboard = () => {
     return (
         <Wrapper>
             <Top>
-                <InputElement>
+                <InputElement width='46%'>
                     <TitleContainer>
                         <Title>Your company name</Title>
                         <Star visibility='true' />
                     </TitleContainer>
                     <TextInputContainer>
-                        <TextInput width='280px' placeholder='Type text' borderColor='true' />
+                        <TextInput width='100%' placeholder='Type text' borderColor='true' />
                         <ErrorMessage>Your content is not valid</ErrorMessage>
                     </TextInputContainer>
                 </InputElement >
-                <InputElement>
+                <InputElement width='29%'>
                     <TitleContainer>
                         <Title>Number of people</Title>
                         <Star />
                     </ TitleContainer>
                     <TextInputContainer>
-                        <TextInput width='178px' placeholder='1-99' borderColor='true' />
+                        <TextInput width='100%' placeholder='1-99' borderColor='true' />
                         <ErrorMessage>Your content is not valid</ErrorMessage>
                     </TextInputContainer>
                 </ InputElement>
             </Top>
             <Center>
-                <InputElement>
+                <InputElement width='100%' marginTopMob='40px'>
                     <TitleContainer>
                         <Title>Business area</Title>
                         <Star />
                     </ TitleContainer>
                     <TextInputContainer>
-                        <TextInput width='496px' placeholder='Design, Marketing, Development, etc.' borderColor={true} />
+                        <TextInput width='100%' placeholder='Design, Marketing, Development, etc.' borderColor={true} />
                         <ErrorMessage>Your content is not valid</ErrorMessage>
                     </TextInputContainer>
                 </InputElement>
-                <InputElement marginTop="20px">
+                <InputElement marginTop="10px" width='100%'>
                     <TitleContainer>
                         <Title>Description</Title>
                         <Star />
                     </ TitleContainer>
-                    <TextInputContainer width='496px' height='168px' >
+                    <TextInputContainer width='100%' height='168px' >
                         <TextArea
-                            width='474px'
+                            width='96%'
                             height='168px'
                             placeholder='Type text'
                             borderColor='true'

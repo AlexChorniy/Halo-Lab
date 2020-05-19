@@ -24,8 +24,8 @@ export const NavLinkContainer = styled.div`
 
 export const NavLink = styled.div`
     font-family: OpenSansBold;
-    width: 30px;
-    height: 30px;
+    min-width: 30px;
+    min-height: 30px;
     background: #1E34A5;
     border-radius: 50%;
     display: flex;
@@ -42,7 +42,7 @@ export const NavLinkValue = styled.div`
 `;
 
 export const DecorationLine = styled.div`
-    width: 184px;
+    width: 22%;
     height: 2px;
     background: #E8E8E8;
     opacity: 0.2;

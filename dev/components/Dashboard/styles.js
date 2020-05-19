@@ -5,13 +5,20 @@ export const Wrapper = styled.div`
     background: #FFFFFF;
     border-radius: 8px;
     overflow: hidden;
+    padding-left: 56px;
+    padding-right: 56px;
 `;
 
 export const Top = styled.div`
-    height: 24%;
+    height: 22%;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
+    margin-top: 30px;
+    @media (max-width: 831px) {
+        flex-direction: column;
+        margin-top: 30px;
+    }
 `;
 
 export const Center = styled.div`
@@ -22,18 +29,25 @@ export const Center = styled.div`
 `;
 
 export const Bottom = styled.div`
-    height: 21%;
-    padding-left: 56px;
+    height: 10%;
 `;
 
 export const InputElement = styled.div`
     margin-top: ${({ marginTop }) => marginTop || '8px'};
+    width: ${({ width }) => width || ''}; 
+    @media (max-width: 831px) {
+        width: 100%;
+        margin-top: ${({ marginTopMob }) => marginTopMob};
+    }   
 `;
 
 export const Title = styled.h5`
     font-family: OpenSansBold;
     font-size: 14px;
     color: #636363;
+    @media (max-width: 831px) {
+        font-size: 12px;
+    }
 `;
 
 export const TitleContainer = styled.div`
@@ -56,6 +70,11 @@ export const TextInput = styled.input`
     background: #F9F9F9;
     border: 1px solid #F15557;
     box-sizing: border-box;
+    word-break: normal;
+    @media (max-width: 831px) {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
 `;
 
 export const ErrorMessage = styled.div`
@@ -64,7 +83,10 @@ export const ErrorMessage = styled.div`
     font-weight: normal;
     font-size: 12px;
     color: #F15557;
-    margin-top: 8px;
+    margin-top: 6px;
+    @media (max-width: 831px) {
+        font-size: 10px;
+    }
 `;
 
 
@@ -79,17 +101,18 @@ export const Star = styled.div.attrs(() => ({
 export const TextArea = styled.textarea`
     margin-top: 8px;
     height: ${({ height }) => height || ''};
-    width: ${({ width }) => width || '474px'};
+    width: ${({ width }) => width};
     background: #F9F9F9;
     border-radius: 8px;
-    padding-left: 16px;
     border-color: ${({ borderColor }) => borderColor ? '#F15557' : rgba(51, 51, 51, 0.2)} ;
+    padding-left: 16px;
+    padding-top: 14px;
 `;
 
 export const UploadContainer = styled.div`
-    height: 48px;
-    width: 496px;
-    margin-top: 50px;
+    min-height: 48px;
+    width: 100%;
+    margin-top: 75px;
     border: 0.65015px solid rgba(51, 51, 51, 0.2);
     box-sizing: border-box;
     border-radius: 10px;
@@ -99,6 +122,11 @@ export const UploadContainer = styled.div`
     overflow: hidden;
     padding-left: 24px;
     padding-right: 24px;
+    @media (max-width: 831px) {
+       margin-top: 60px;
+       padding-left: 8px;
+       padding-right: 8px;
+    }  
 `;
 
 export const FileSvgUpload = styled.img`
@@ -106,6 +134,9 @@ export const FileSvgUpload = styled.img`
   height: 20px;
   fill: #333333;
   margin-right: 16px;
+  @media (max-width: 831px) {
+    margin-right: 3px;
+  }  
 `;
 
 export const Upload = styled.input.attrs(() => ({
@@ -124,14 +155,18 @@ export const Upload = styled.input.attrs(() => ({
 export const UploadLabel = styled.label.attrs(() => ({
     htmlFor: "upload"
 }))`
-    min-width: 184px;
-    height: 20px;
+    width: 60%;
+    height: 100%;
     display: flex;
-    line-height: 20px;
-    font-family: Open Sans;
+    align-items: center;
+    font-family: OpenSansBold;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
+    word-break: normal;
+    @media (max-width: 831px) {
+        font-size: 12px;
+    }
 `;
 
 export const UploadFileCounter = styled.div`
@@ -139,6 +174,9 @@ export const UploadFileCounter = styled.div`
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
+    @media (max-width: 831px) {
+        font-size: 12px;
+    }
 `;
 
 export const Button = styled.div`
@@ -155,6 +193,10 @@ export const Button = styled.div`
     font-style: normal;
     font-weight: bold;
     font-size: 16px;
+    @media (max-width: 831px) {
+        width: 100%;
+        font-size: 14px;
+    }
 `;
 
 
