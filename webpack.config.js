@@ -11,7 +11,6 @@ module.exports = {
     context: path.resolve(__dirname, 'dev'),
     entry: {
         main: ['@babel/polyfill', './index.js'],
-        // analytics: './components/analytics.js'
     },
     output: {
         path: path.resolve(__dirname, 'public'),
