@@ -11,34 +11,41 @@ import Home from '@comp/Home/Home';
 import About from '@comp/About/About';
 import Dashboard from '@comp/Dashboard/Dashboard';
 import Header from '@comp/Header/Header';
+import GlobalStyles from './assets/global.styles';
 
 import styled from "styled-components";
 
 const App = () => {
     return (
-        <Router>
-            <Main>
-                <Header />
-                <Switch>
-                    <Route exact path="/">
-                        <Home />
-                    </Route>
-                    <Route path="/about">
-                        <About />
-                    </Route>
-                    <Route path="/dashboard">
-                        <Dashboard />
-                    </Route>
-                    <Redirect to="/" />
-                </Switch>
-            </Main>
-        </Router>
+        <>
+            <Router>
+                <Main>
+                    <Header />
+                    <Switch>
+                        <Route exact path="/">
+                            <Home />
+                        </Route>
+                        <Route path="/about">
+                            <About />
+                        </Route>
+                        <Route path="/dashboard">
+                            <Dashboard />
+                        </Route>
+                        <Redirect to="/" />
+                    </Switch>
+                </Main>
+            </Router>
+            <GlobalStyles />
+        </>
     );
 };
 
 const Main = styled.div`
-    background: linear-gradient(233.1deg, #216190 19.65%, #0834D0 81.25%);
-    height: 100%;
+    background-color: transparent;
+    width: 608px;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding-bottom: 20px;
 `;
 
 export default App;

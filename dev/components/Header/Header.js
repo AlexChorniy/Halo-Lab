@@ -1,22 +1,39 @@
 import React from 'react';
-import { Link } from "react-router-dom/";
+import { Link } from "react-router-dom";
+
+import {
+    PageTitleText,
+    Navigation,
+    NavLink,
+    DecorationLine,
+    NavLinkValue,
+    NavLinkContainer
+} from './styles';
 
 const Header = () => {
     return (
-        <>
-            <h1>Your first project</h1>
-            <ul>
-                <li>
-                    <Link to="/">1</Link>
-                </li>
-                <li>
-                    <Link to="/about">2</Link>
-                </li>
-                <li>
-                    <Link to="/dashboard">3</Link>
-                </li>
-            </ul>
-        </>
+        <Navigation>
+            <PageTitleText>Your first project</PageTitleText>
+            <NavLinkContainer>
+                <NavLink>
+                    <Link to="/">
+                        <NavLinkValue>1</NavLinkValue>
+                    </Link>
+                </NavLink>
+                <DecorationLine />
+                <NavLink>
+                    <Link to="/about">
+                        <NavLinkValue>2</NavLinkValue>
+                    </Link>
+                </NavLink>
+                <DecorationLine />
+                <NavLink>
+                    <Link to="/dashboard">
+                        <NavLinkValue>3</NavLinkValue>
+                    </Link>
+                </NavLink>
+            </NavLinkContainer>
+        </Navigation>
     );
 };
 
