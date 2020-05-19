@@ -16,19 +16,19 @@ const Header = () => {
             <PageTitleText>Your first project</PageTitleText>
             <NavLinkContainer>
                 <NavLink>
-                    <Link to="/">
+                    <Link to="/" style={{ textDecoration: 'none' }}>
                         <NavLinkValue>1</NavLinkValue>
                     </Link>
                 </NavLink>
                 <DecorationLine />
                 <NavLink>
-                    <Link to="/about">
+                    <Link to="/about" style={{ textDecoration: 'none' }}>
                         <NavLinkValue>2</NavLinkValue>
                     </Link>
                 </NavLink>
                 <DecorationLine />
                 <NavLink>
-                    <Link to="/dashboard">
+                    <Link to="/dashboard" style={{ textDecoration: 'none' }}>
                         <NavLinkValue>3</NavLinkValue>
                     </Link>
                 </NavLink>

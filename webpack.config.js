@@ -76,6 +76,12 @@ module.exports = {
                 },
             ],
         }, {
+            test: /\.svg$/,
+            loader: 'svg-url-loader',
+            query: {
+                limit: '10000',
+            }
+        }, {
             test: /\.(ttf|TTF|woff|woff2|eot)$/,
             use: [
                 {

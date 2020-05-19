@@ -1,4 +1,5 @@
 import React from 'react';
+import UploadSVG from '../../assets/img/folder-regular.svg';
 
 import {
     Wrapper,
@@ -13,8 +14,12 @@ import {
     ErrorMessage,
     Star,
     TextArea,
-    AddFileArea,
-    Button
+    Button,
+    UploadContainer,
+    Upload,
+    UploadFileCounter,
+    FileSvgUpload,
+    UploadLabel
 } from './styles';
 
 const Dashboard = () => {
@@ -24,7 +29,7 @@ const Dashboard = () => {
                 <InputElement>
                     <TitleContainer>
                         <Title>Your company name</Title>
-                        <Star visibility='true'>*</Star>
+                        <Star visibility='true' />
                     </TitleContainer>
                     <TextInputContainer>
                         <TextInput width='280px' placeholder='Type text' borderColor='true' />
@@ -34,7 +39,7 @@ const Dashboard = () => {
                 <InputElement>
                     <TitleContainer>
                         <Title>Number of people</Title>
-                        <Star>*</Star>
+                        <Star />
                     </ TitleContainer>
                     <TextInputContainer>
                         <TextInput width='178px' placeholder='1-99' borderColor='true' />
@@ -46,7 +51,7 @@ const Dashboard = () => {
                 <InputElement>
                     <TitleContainer>
                         <Title>Business area</Title>
-                        <Star>*</Star>
+                        <Star />
                     </ TitleContainer>
                     <TextInputContainer>
                         <TextInput width='496px' placeholder='Design, Marketing, Development, etc.' borderColor={true} />
@@ -56,7 +61,7 @@ const Dashboard = () => {
                 <InputElement marginTop="20px">
                     <TitleContainer>
                         <Title>Description</Title>
-                        <Star>*</Star>
+                        <Star />
                     </ TitleContainer>
                     <TextInputContainer width='496px' height='168px' >
                         <TextArea
@@ -68,7 +73,11 @@ const Dashboard = () => {
                         <ErrorMessage>Your content is not valid</ErrorMessage>
                     </TextInputContainer>
                 </InputElement>
-                <AddFileArea>123</AddFileArea>
+                <UploadContainer>
+                    <UploadLabel><FileSvgUpload src={UploadSVG} />Add file as attachment</UploadLabel>
+                    <Upload />
+                    <UploadFileCounter>3 files attached</UploadFileCounter>
+                </UploadContainer>
             </Center>
             <Bottom>
                 <Button>Submit</Button>

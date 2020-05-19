@@ -52,7 +52,7 @@ export const TextInput = styled.input`
     background: #F9F9F9;
     border-radius: 8px;
     padding-left: 16px;
-    border-color: ${({ borderColor }) => borderColor ? '#F15557' : ''} ;
+    border-color: ${({ borderColor }) => borderColor ? '#F15557' : rgba(51, 51, 51, 0.2)} ;
     background: #F9F9F9;
     border: 1px solid #F15557;
     box-sizing: border-box;
@@ -68,7 +68,9 @@ export const ErrorMessage = styled.div`
 `;
 
 
-export const Star = styled.div`
+export const Star = styled.div.attrs(() => ({
+    text: 'dfghgh',
+}))`
    color: #F15557;
    margin-left: 8px;
    visibility: ${({ visibility }) => visibility};
@@ -81,19 +83,62 @@ export const TextArea = styled.textarea`
     background: #F9F9F9;
     border-radius: 8px;
     padding-left: 16px;
-    border-color: ${({ borderColor }) => borderColor ? '#F15557' : ''} ;
+    border-color: ${({ borderColor }) => borderColor ? '#F15557' : rgba(51, 51, 51, 0.2)} ;
 `;
 
-export const AddFileArea = styled.div`
+export const UploadContainer = styled.div`
     height: 48px;
     width: 496px;
     margin-top: 50px;
-    opacity: 0.2;
-    border: 0.65015px solid #333333;
+    border: 0.65015px solid rgba(51, 51, 51, 0.2);
     box-sizing: border-box;
     border-radius: 10px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+    padding-left: 24px;
+    padding-right: 24px;
+`;
+
+export const FileSvgUpload = styled.img`
+  width: 24px;
+  height: 20px;
+  fill: #333333;
+  margin-right: 16px;
+`;
+
+export const Upload = styled.input.attrs(() => ({
+    type: 'file',
+    name: 'upload',
+    id: 'upload'
+}))`
+    width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+`;
+
+export const UploadLabel = styled.label.attrs(() => ({
+    htmlFor: "upload"
+}))`
+    min-width: 184px;
+    height: 20px;
+    display: flex;
+    line-height: 20px;
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+`;
+
+export const UploadFileCounter = styled.div`
+    font-family: OpenSansBold;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
 `;
 
 export const Button = styled.div`
@@ -111,3 +156,5 @@ export const Button = styled.div`
     font-weight: bold;
     font-size: 16px;
 `;
+
+
