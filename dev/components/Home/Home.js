@@ -1,8 +1,11 @@
 import React from 'react';
 
 const Home = () => {
+    const divStyle = {
+        textAlign: 'center'
+    };
     return (
-        <div>
+        <div style={divStyle}>
             <h2>Home</h2>
         </div>
     );
