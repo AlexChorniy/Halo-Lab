@@ -28,7 +28,6 @@ const Dashboard = () => {
     const fileSelectedHandler = (event) => {
         const newFile = event.target.files[0];
         setFiles([...getFiles, newFile]);
-
     };
 
     return (
@@ -36,8 +35,7 @@ const Dashboard = () => {
             <Top>
                 <InputElement width='56%'>
                     <TitleContainer>
-                        <Title>Your company name</Title>
-                        <Star visibility='true' />
+                        <Title>Your company name <Star>*</Star></Title>
                     </TitleContainer>
                     <TextInputContainer>
                         <TextInput width='100%' placeholder='Type text' borderColor='true' />
@@ -46,8 +44,7 @@ const Dashboard = () => {
                 </InputElement >
                 <InputElement width='41%'>
                     <TitleContainer>
-                        <Title>Number of people</Title>
-                        <Star />
+                        <Title>Number of people <Star>*</Star></Title>
                     </ TitleContainer>
                     <TextInputContainer>
                         <TextInput width='100%' placeholder='1-99' borderColor='true' />
@@ -58,18 +55,16 @@ const Dashboard = () => {
             <Center>
                 <InputElement width='100%' marginTopMob='40px'>
                     <TitleContainer>
-                        <Title>Business area</Title>
-                        <Star />
+                        <Title>Business area <Star>*</Star></Title>
                     </ TitleContainer>
                     <TextInputContainer>
                         <TextInput width='100%' placeholder='Design, Marketing, Development, etc.' borderColor={true} />
                         <ErrorMessage>This field in required</ErrorMessage>
                     </TextInputContainer>
                 </InputElement>
-                <InputElement marginTop="10px" width='100%'>
+                <InputElement marginTop="40px" marginTopMob="20px" width='100%'>
                     <TitleContainer>
-                        <Title>Description</Title>
-                        <Star />
+                        <Title>Description <Star>*</Star></Title>
                     </ TitleContainer>
                     <TextInputContainer width='100%' height='168px' >
                         <TextArea
@@ -78,7 +73,6 @@ const Dashboard = () => {
                             placeholder='Type text'
                             borderColor='true'
                         />
-                        <ErrorMessage>Your content is not valid</ErrorMessage>
                     </TextInputContainer>
                 </InputElement>
                 <UploadContainer>

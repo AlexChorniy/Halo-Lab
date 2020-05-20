@@ -89,10 +89,7 @@ export const ErrorMessage = styled.div`
     }
 `;
 
-
-export const Star = styled.div.attrs(() => ({
-    text: 'dfghgh',
-}))`
+export const Star = styled.strong`
    color: #F15557;
    margin-left: 8px;
    visibility: ${({ visibility }) => visibility || false};
@@ -112,7 +109,7 @@ export const TextArea = styled.textarea`
 export const UploadContainer = styled.div`
     min-height: 48px;
     width: 100%;
-    margin-top: 75px;
+    margin-top: 50px;
     border: 0.65015px solid rgba(51, 51, 51, 0.2);
     box-sizing: border-box;
     border-radius: 10px;
@@ -124,7 +121,7 @@ export const UploadContainer = styled.div`
     padding-right: 24px;
     position: relative;
     @media (max-width: 831px) {
-       margin-top: 60px;
+       margin-top: 50px;
        padding-left: 8px;
        padding-right: 8px;
        justify-content: center;
@@ -185,6 +182,7 @@ export const UploadFileCounter = styled.div`
         font-size: 12px;
         margin-top: 3px;
         position: absolute;
+        z-index: 5;
     }
 `;
 
