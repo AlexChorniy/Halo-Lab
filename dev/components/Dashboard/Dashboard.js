@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import UploadSVG from '../../assets/img/folder-regular.svg';
 
 import {
@@ -23,6 +23,14 @@ import {
 } from './styles';
 
 const Dashboard = () => {
+    const [getFiles, setFiles] = useState([]);
+    const clientWidth = window.innerWidth;
+    const fileSelectedHandler = (event) => {
+        const newFile = event.target.files[0];
+        setFiles([...getFiles, newFile]);
+
+    };
+
     return (
         <Wrapper>
             <Top>
@@ -74,10 +82,10 @@ const Dashboard = () => {
                     </TextInputContainer>
                 </InputElement>
                 <UploadContainer>
-                    <UploadLabel><FileSvgUpload src={UploadSVG} />Add file as attachment</UploadLabel>
-                    <UploadFileCounter>3 files attached</UploadFileCounter>
+                    <UploadLabel><FileSvgUpload src={UploadSVG} />{clientWidth <= 831 ? "" : 'Add file as attachment'}</UploadLabel>
+                    <UploadFileCounter>{clientWidth <= 831 ? getFiles.length : `${getFiles.length} files attached`} </UploadFileCounter>
                 </UploadContainer>
-                <Upload />
+                <Upload onChange={fileSelectedHandler} />
             </Center>
             <Bottom>
                 <Button>Submit</Button>

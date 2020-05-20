@@ -122,6 +122,7 @@ export const UploadContainer = styled.div`
     overflow: hidden;
     padding-left: 24px;
     padding-right: 24px;
+    position: relative;
     @media (max-width: 831px) {
        margin-top: 60px;
        padding-left: 8px;
@@ -130,13 +131,15 @@ export const UploadContainer = styled.div`
     }  
 `;
 
-export const FileSvgUpload = styled.img`
+export const FileSvgUpload = styled.img.attrs(() => ({}))`
   width: 24px;
   height: 20px;
   fill: #333333;
   margin-right: 16px;
   @media (max-width: 831px) {
     margin-right: 3px;
+    width: 53px;
+    height: 44px;
   }; 
 `;
 
@@ -156,7 +159,7 @@ export const Upload = styled.input.attrs(() => ({
 export const UploadLabel = styled.label.attrs(() => ({
     htmlFor: "upload"
 }))`
-    width: 100%;
+    width: 50%;
     height: 100%;
     display: flex;
     align-items: center;
@@ -166,6 +169,7 @@ export const UploadLabel = styled.label.attrs(() => ({
     font-size: 14px;
     word-break: normal;
     @media (max-width: 831px) {
+        width: 100%;
         font-size: 12px;
         justify-content: center;
         text-align: center;
@@ -179,7 +183,8 @@ export const UploadFileCounter = styled.div`
     font-size: 14px;
     @media (max-width: 831px) {
         font-size: 12px;
-        display: none;
+        margin-top: 3px;
+        position: absolute;
     }
 `;
 
