@@ -26,24 +26,24 @@ const Dashboard = () => {
     return (
         <Wrapper>
             <Top>
-                <InputElement width='46%'>
+                <InputElement width='56%'>
                     <TitleContainer>
                         <Title>Your company name</Title>
                         <Star visibility='true' />
                     </TitleContainer>
                     <TextInputContainer>
                         <TextInput width='100%' placeholder='Type text' borderColor='true' />
-                        <ErrorMessage>Your content is not valid</ErrorMessage>
+                        <ErrorMessage>This field in required</ErrorMessage>
                     </TextInputContainer>
                 </InputElement >
-                <InputElement width='29%'>
+                <InputElement width='41%'>
                     <TitleContainer>
                         <Title>Number of people</Title>
                         <Star />
                     </ TitleContainer>
                     <TextInputContainer>
                         <TextInput width='100%' placeholder='1-99' borderColor='true' />
-                        <ErrorMessage>Your content is not valid</ErrorMessage>
+                        <ErrorMessage>Please enter number from 1 to 99</ErrorMessage>
                     </TextInputContainer>
                 </ InputElement>
             </Top>
@@ -55,7 +55,7 @@ const Dashboard = () => {
                     </ TitleContainer>
                     <TextInputContainer>
                         <TextInput width='100%' placeholder='Design, Marketing, Development, etc.' borderColor={true} />
-                        <ErrorMessage>Your content is not valid</ErrorMessage>
+                        <ErrorMessage>This field in required</ErrorMessage>
                     </TextInputContainer>
                 </InputElement>
                 <InputElement marginTop="10px" width='100%'>
@@ -75,9 +75,9 @@ const Dashboard = () => {
                 </InputElement>
                 <UploadContainer>
                     <UploadLabel><FileSvgUpload src={UploadSVG} />Add file as attachment</UploadLabel>
-                    <Upload />
                     <UploadFileCounter>3 files attached</UploadFileCounter>
                 </UploadContainer>
+                <Upload />
             </Center>
             <Bottom>
                 <Button>Submit</Button>

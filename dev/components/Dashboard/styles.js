@@ -95,7 +95,7 @@ export const Star = styled.div.attrs(() => ({
 }))`
    color: #F15557;
    margin-left: 8px;
-   visibility: ${({ visibility }) => visibility};
+   visibility: ${({ visibility }) => visibility || false};
 `;
 
 export const TextArea = styled.textarea`
@@ -126,6 +126,7 @@ export const UploadContainer = styled.div`
        margin-top: 60px;
        padding-left: 8px;
        padding-right: 8px;
+       justify-content: center;
     }  
 `;
 
@@ -136,7 +137,7 @@ export const FileSvgUpload = styled.img`
   margin-right: 16px;
   @media (max-width: 831px) {
     margin-right: 3px;
-  }  
+  }; 
 `;
 
 export const Upload = styled.input.attrs(() => ({
@@ -155,7 +156,7 @@ export const Upload = styled.input.attrs(() => ({
 export const UploadLabel = styled.label.attrs(() => ({
     htmlFor: "upload"
 }))`
-    width: 60%;
+    width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
@@ -166,6 +167,8 @@ export const UploadLabel = styled.label.attrs(() => ({
     word-break: normal;
     @media (max-width: 831px) {
         font-size: 12px;
+        justify-content: center;
+        text-align: center;
     }
 `;
 
@@ -176,6 +179,7 @@ export const UploadFileCounter = styled.div`
     font-size: 14px;
     @media (max-width: 831px) {
         font-size: 12px;
+        display: none;
     }
 `;
 

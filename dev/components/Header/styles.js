@@ -7,6 +7,9 @@ export const PageTitleText = styled.h2`
     font-size: 40px;
     color: #FFFFFF;
     text-align: center;
+    @media (max-width: 831px) {
+        font-size: 35px;
+    }
 `;
 
 export const Navigation = styled.div`
@@ -20,6 +23,9 @@ export const NavLinkContainer = styled.div`
     align-items: center;
     padding-top: 20px;
     height: 101px;
+    @media (max-width: 390px) {
+        padding-top: 0;
+    }
 `;
 
 export const NavLink = styled.div`
