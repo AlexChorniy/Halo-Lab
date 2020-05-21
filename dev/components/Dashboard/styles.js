@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.form`
     height: 727px;
     background: #FFFFFF;
     border-radius: 8px;
@@ -34,7 +34,7 @@ export const Bottom = styled.div`
 
 export const InputElement = styled.div`
     margin-top: ${({ marginTop }) => marginTop || '8px'};
-    width: ${({ width }) => width || ''}; 
+    width: ${({ width }) => width || ''};
     @media (max-width: 831px) {
         width: 100%;
         margin-top: ${({ marginTopMob }) => marginTopMob};
@@ -57,20 +57,25 @@ export const TitleContainer = styled.div`
 export const TextInputContainer = styled.div`
     height: ${({ height }) => height || ''};
     width: ${({ width }) => width || ''};
+    
 `;
 
-export const TextInput = styled.input`
+export const TextInput = styled.input.attrs(() => ({
+    autocomplete: "off"
+}))`
     margin-top: 8px;
     height: 48px;
     width: ${({ width }) => width};
     background: #F9F9F9;
     border-radius: 8px;
     padding-left: 16px;
-    border-color: ${({ borderColor }) => borderColor ? '#F15557' : rgba(51, 51, 51, 0.2)} ;
+    border-color: ${({ borderColor }) => borderColor ? '#F15557' : 'rgba(51, 51, 51, 0.2)'} ;
     background: #F9F9F9;
-    border: 1px solid #F15557;
+    border-width: 1px;
+    border-style: 'solid';
     box-sizing: border-box;
     word-break: normal;
+    outline: none;
     @media (max-width: 831px) {
         padding-left: 5px;
         padding-right: 5px;
@@ -83,33 +88,36 @@ export const ErrorMessage = styled.div`
     font-weight: normal;
     font-size: 12px;
     color: #F15557;
-    margin-top: 6px;
+    margin-top: ${({ marginTop }) => marginTop || '6px'};
+    visibility: ${({ isVisibile }) => isVisibile ? 'visible' : 'hidden'};
     @media (max-width: 831px) {
         font-size: 10px;
     }
 `;
 
-export const Star = styled.strong`
+export const Required = styled.strong`
    color: #F15557;
    margin-left: 8px;
-   visibility: ${({ visibility }) => visibility || false};
+   visibility: ${({ isVisibile }) => isVisibile ? 'visible' : 'hidden'};
 `;
 
 export const TextArea = styled.textarea`
+    font-family: OpenSansBold;
     margin-top: 8px;
     height: ${({ height }) => height || ''};
     width: ${({ width }) => width};
     background: #F9F9F9;
     border-radius: 8px;
-    border-color: ${({ borderColor }) => borderColor ? '#F15557' : rgba(51, 51, 51, 0.2)} ;
+    border-color: ${({ borderColor }) => borderColor ? '#F15557' : 'rgba(51, 51, 51, 0.2)'} ;
     padding-left: 16px;
     padding-top: 14px;
+    outline: none;
 `;
 
 export const UploadContainer = styled.div`
     min-height: 48px;
     width: 100%;
-    margin-top: 50px;
+    margin-top: 24px;
     border: 0.65015px solid rgba(51, 51, 51, 0.2);
     box-sizing: border-box;
     border-radius: 10px;
@@ -121,17 +129,16 @@ export const UploadContainer = styled.div`
     padding-right: 24px;
     position: relative;
     @media (max-width: 831px) {
-       margin-top: 50px;
+       margin-top: 23px;
        padding-left: 8px;
        padding-right: 8px;
        justify-content: center;
     }  
 `;
 
-export const FileSvgUpload = styled.img.attrs(() => ({}))`
+export const FileSvgUpload = styled.img`
   width: 24px;
   height: 20px;
-  fill: #333333;
   margin-right: 16px;
   @media (max-width: 831px) {
     margin-right: 3px;
@@ -148,7 +155,6 @@ export const Upload = styled.input.attrs(() => ({
     width: 0.1px;
 	height: 0.1px;
 	opacity: 0;
-	overflow: hidden;
 	position: absolute;
 	z-index: -1;
 `;
@@ -186,7 +192,9 @@ export const UploadFileCounter = styled.div`
     }
 `;
 
-export const Button = styled.div`
+export const Button = styled.div.attrs(() => ({
+    type: "button"
+}))`
     width: 144px;
     height: 56px;
     background: #DA3F5B;
