@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import UploadSVG from '../../assets/img/folder-regular.svg';
-import { formValidation } from '../../assets/helpers';
+import { validationForm } from '../../assets/validation/validationHandler';
 
 import {
     Wrapper,
@@ -32,7 +32,7 @@ const Dashboard = () => {
     const clientWidth = window.innerWidth;
 
     useEffect(() => {
-        const validResult = formValidation(clientDB);
+        const validResult = validationForm(clientDB)('validate');
         setValid(Object.assign(getValid, validResult));
     }, [getValue]);
 
@@ -61,9 +61,6 @@ const Dashboard = () => {
         const value = event.target.value;
         clientDB = { ...clientDB, company: value };
         setValue(value);
-
-        let newEevent = new Event("click");
-        this.dispatchEvent(newEevent);
     };
     const staffNumberHandler = event => {
         const value = event.target.value;
@@ -80,16 +77,14 @@ const Dashboard = () => {
         clientDB = { ...clientDB, description: value };
         setValue(value);
     };
-    const submitButHandler = event => {
-        // ['company', 'staff', area, description]
-        let newEevent = new Event("click");
-        company.dispatchEvent(newEevent);
-
-        console.log('submitButHandler', getValid);
-
-        // console.log('submitButHandler', getValid);
+    const submitButHandler = () => {
+        const validationAllResult = validationForm()('validateAll');
+        if (validationAllResult.checkResult) {
+            console.log(clientDB);
+        } else {
+            setValid(validationAllResult.badyObj);
+        }
     };
-
     return (
         <Wrapper>
             <Top>
@@ -102,7 +97,6 @@ const Dashboard = () => {
                             onChange={companyValueHandler}
                             width='100%' placeholder='Type text'
                             name='company'
-                            id="company"
                             autocomplete="off"
                             borderColor={getValid.company && !getValid.companyFocus && !getValid.company.valid} />
                         <ErrorMessage
@@ -110,7 +104,7 @@ const Dashboard = () => {
                         >{getValid.company && getValid.company.message}</ErrorMessage>
                     </TextInputContainer>
                 </InputElement >
-                <InputElement width='41%' onFocus={onFocus} onBlur={onBlur} name='staff'>
+                <InputElement width='41%' onFocus={onFocus} onBlur={onBlur}>
                     <TitleContainer>
                         <Title>Number of people <Required isVisibile={getValid.staff?.required}>*</Required></Title>
                     </ TitleContainer>
@@ -119,7 +113,6 @@ const Dashboard = () => {
                             onChange={staffNumberHandler}
                             width='100%' placeholder='1-99'
                             name='staff'
-                            id="staff"
                             autocomplete="off"
                             borderColor={getValid.staff && !getValid.staffFocus && !getValid.staff.valid} />
                         <ErrorMessage
@@ -140,7 +133,6 @@ const Dashboard = () => {
                             onChange={areaHandler}
                             name='area'
                             width='100%'
-                            id="area"
                             placeholder='Design, Marketing, Development, etc.'
                             borderColor={getValid.area && !getValid.areaFocus && !getValid.area.valid}
                         />
@@ -157,7 +149,6 @@ const Dashboard = () => {
                         <TextArea
                             width='96%'
                             height='168px'
-                            id="description"
                             placeholder='Type text'
                             borderColor={!getValid.descriptionFocus && getValid.description?.isEmpty}
                             name='description'
