@@ -20,11 +20,11 @@ export const validateAll = (validatedValues, verifyElements) => {
     let strainer = {};
     for (const key in validatedValues) {
         if (validatedValues.hasOwnProperty(key) && !validatedValues[key].valid) {
-            strainer = { checkResult: false, badyObj: validatedValues };
+            strainer = { checkResult: false, bodyObj: validatedValues };
             return strainer;
         }
     };
-    strainer = { checkResult: true, badyObj: validatedValues };
+    strainer = { checkResult: true, bodyObj: validatedValues };
     return strainer;
 };
 

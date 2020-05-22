@@ -57,32 +57,20 @@ const Dashboard = () => {
         }
     };
 
-    function companyValueHandler(event) {
+    function inputClickHandler(event) {
+        const name = event.target.name;
         const value = event.target.value;
-        clientDB = { ...clientDB, company: value };
-        setValue(value);
+        clientDB = { ...clientDB, [name]: value };
+        console.log(clientDB);
+        setValue(name);
     };
-    const staffNumberHandler = event => {
-        const value = event.target.value;
-        clientDB = { ...clientDB, staff: value };
-        setValue(value);
-    };
-    const areaHandler = event => {
-        const value = event.target.value;
-        clientDB = { ...clientDB, area: value };
-        setValue(value);
-    };
-    const descriptionHandler = event => {
-        const value = event.target.value;
-        clientDB = { ...clientDB, description: value };
-        setValue(value);
-    };
+
     const submitButHandler = () => {
         const validationAllResult = validationForm()('validateAll');
         if (validationAllResult.checkResult) {
             console.log(clientDB);
         } else {
-            setValid(validationAllResult.badyObj);
+            setValid(validationAllResult.bodyObj);
         }
     };
     return (
@@ -94,7 +82,7 @@ const Dashboard = () => {
                     </TitleContainer>
                     <TextInputContainer>
                         <TextInput
-                            onChange={companyValueHandler}
+                            onChange={inputClickHandler}
                             width='100%' placeholder='Type text'
                             name='company'
                             autocomplete="off"
@@ -110,7 +98,7 @@ const Dashboard = () => {
                     </ TitleContainer>
                     <TextInputContainer>
                         <TextInput
-                            onChange={staffNumberHandler}
+                            onChange={inputClickHandler}
                             width='100%' placeholder='1-99'
                             name='staff'
                             autocomplete="off"
@@ -130,7 +118,7 @@ const Dashboard = () => {
                     </ TitleContainer>
                     <TextInputContainer>
                         <TextInput
-                            onChange={areaHandler}
+                            onChange={inputClickHandler}
                             name='area'
                             width='100%'
                             placeholder='Design, Marketing, Development, etc.'
@@ -145,7 +133,7 @@ const Dashboard = () => {
                     <TitleContainer>
                         <Title>Description <Required isVisibile={getValid.description?.isEmpty}>*</Required></Title>
                     </ TitleContainer>
-                    <TextInputContainer onChange={descriptionHandler} width='100%' height='168px' >
+                    <TextInputContainer onChange={inputClickHandler} width='100%' height='168px' >
                         <TextArea
                             width='96%'
                             height='168px'
