@@ -1,28 +1,18 @@
-"use strict"
-
 import React, { useState, useEffect } from 'react';
 import UploadSVG from '../../assets/img/folder-regular.svg';
 import { validationForm } from '../../assets/validation/validationHandler';
+import Company from './Company/Company';
+import Staff from './Staff/Staff';
+import Description from './Description/Description';
+import Area from './Area/Area';
+import Upload from './Upload/Upload';
 
 import {
     Wrapper,
     Top,
     Center,
     Bottom,
-    InputElement,
-    Title,
-    TextInput,
-    TitleContainer,
-    TextInputContainer,
-    ErrorMessage,
-    Required,
-    TextArea,
     Button,
-    UploadContainer,
-    Upload,
-    UploadFileCounter,
-    FileSvgUpload,
-    UploadLabel
 } from './styles';
 
 let clientDB = {};
@@ -32,7 +22,6 @@ const Dashboard = () => {
     const [getValue, setValue] = useState('');
     const [getName, setName] = useState('');
     const [getValid, setValid] = useState({});
-    const clientWidth = window.innerWidth;
     const { company, staff, area, description, companyFocus, staffFocus, areaFocus, descriptionFocus } = getValid;
 
     useEffect(() => {
@@ -113,84 +102,36 @@ const Dashboard = () => {
     return (
         <Wrapper>
             <Top>
-                <InputElement width='56%' onFocus={onFocus} onBlur={onBlur}>
-                    <TitleContainer>
-                        <Title>Your company name <Required isVisibile={fieldsValidationHelper.company.required}>*</Required></Title>
-                    </TitleContainer>
-                    <TextInputContainer>
-                        <TextInput
-                            onChange={inputClickHandler}
-                            width='100%' placeholder='Type text'
-                            name='company'
-                            autocomplete="off"
-                            borderColor={fieldsValidationHelper.company.boarderColor} />
-                        <ErrorMessage
-                            isVisibile={fieldsValidationHelper.company.isMessageError}
-                        >{fieldsValidationHelper.company.messageValue}</ErrorMessage>
-                    </TextInputContainer>
-                </InputElement >
-                <InputElement width='41%' onFocus={onFocus} onBlur={onBlur}>
-                    <TitleContainer>
-                        <Title>Number of people <Required isVisibile={fieldsValidationHelper.staff.required}>*</Required></Title>
-                    </ TitleContainer>
-                    <TextInputContainer>
-                        <TextInput
-                            onChange={inputClickHandler}
-                            width='100%' placeholder='1-99'
-                            name='staff'
-                            autocomplete="off"
-                            borderColor={fieldsValidationHelper.staff.boarderColor} />
-                        <ErrorMessage
-                            isVisibile={fieldsValidationHelper.staff.isMessageError}
-                        >
-                            {fieldsValidationHelper.staff.messageValue}
-                        </ErrorMessage>
-                    </TextInputContainer>
-                </ InputElement>
+                <Company
+                    onFocus={onFocus}
+                    onBlur={onBlur}
+                    onChange={inputClickHandler}
+                    fieldsValidationHelper={fieldsValidationHelper}
+                />
+                <Staff
+                    onFocus={onFocus}
+                    onBlur={onBlur}
+                    onChange={inputClickHandler}
+                    fieldsValidationHelper={fieldsValidationHelper}
+                />
             </Top>
             <Center>
-                <InputElement width='100%' marginTopMob='16px' onFocus={onFocus} onBlur={onBlur}>
-                    <TitleContainer>
-                        <Title>Business area <Required isVisibile={fieldsValidationHelper.area.required}>*</Required></Title>
-                    </ TitleContainer>
-                    <TextInputContainer>
-                        <TextInput
-                            onChange={inputClickHandler}
-                            name='area'
-                            width='100%'
-                            placeholder='Design, Marketing, Development, etc.'
-                            borderColor={fieldsValidationHelper.area.boarderColor}
-                        />
-                        <ErrorMessage isVisibile={fieldsValidationHelper.area.isMessageError}>
-                            {fieldsValidationHelper.area.messageValue}
-                        </ErrorMessage>
-                    </TextInputContainer>
-                </InputElement>
-                <InputElement marginTop="20px" marginTopMob="10px" onFocus={onFocus} onBlur={onBlur} >
-                    <TitleContainer>
-                        <Title>Description <Required isVisibile={fieldsValidationHelper.description.required}>*</Required></Title>
-                    </ TitleContainer>
-                    <TextInputContainer>
-                        <TextArea
-                            placeholder='Type text'
-                            onChange={inputClickHandler}
-                            borderColor={fieldsValidationHelper.description.boarderColor}
-                            name='description'
-                            width="100%"
-                        />
-                    </TextInputContainer>
-                    <ErrorMessage
-                        isVisibile={fieldsValidationHelper.description.isMessageError}
-                        marginTop='8px'
-                    >
-                        {fieldsValidationHelper.description.messageValue}
-                    </ErrorMessage>
-                </InputElement>
-                <UploadContainer>
-                    <UploadLabel><FileSvgUpload src={UploadSVG} />{clientWidth <= 831 ? "" : 'Add file as attachment'}</UploadLabel>
-                    <UploadFileCounter>{clientWidth <= 831 ? getFiles.length : `${getFiles.length} files attached`} </UploadFileCounter>
-                </UploadContainer>
-                <Upload onChange={fileSelectedHandler} />
+                <Area
+                    onFocus={onFocus}
+                    onBlur={onBlur}
+                    onChange={inputClickHandler}
+                    fieldsValidationHelper={fieldsValidationHelper}
+                />
+                <Description
+                    onFocus={onFocus}
+                    onBlur={onBlur}
+                    onChange={inputClickHandler}
+                    fieldsValidationHelper={fieldsValidationHelper}
+                />
+                <Upload
+                    fileSelectedHandler={fileSelectedHandler}
+                    getFiles={getFiles}
+                />
             </Center>
             <Bottom>
                 <Button onClick={submitButHandler}>Submit</Button>

@@ -162,7 +162,7 @@ export const FileSvgUpload = styled.img`
   }; 
 `;
 
-export const Upload = styled.input.attrs(() => ({
+export const UploadElement = styled.input.attrs(() => ({
     type: 'file',
     name: 'upload',
     id: 'upload'
