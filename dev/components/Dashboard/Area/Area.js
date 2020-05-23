@@ -19,19 +19,19 @@ const Area = ({
     return (
         <InputElement width='100%' onFocus={onFocus} onBlur={onBlur}>
             <TitleContainer>
-                <Title>Your company name <Required isVisibile={fieldsValidationHelper.company.required}>*</Required></Title>
+                <Title>Business area <Required isVisibile={fieldsValidationHelper.area.required}>*</Required></Title>
             </TitleContainer>
             <TextInputContainer>
                 <TextInput
                     onChange={inputClickHandler}
                     width='100%'
                     placeholder='Type text'
-                    name='company'
+                    name='area'
                     autocomplete="off"
-                    borderColor={fieldsValidationHelper.company.boarderColor} />
+                    borderColor={fieldsValidationHelper.area.boarderColor} />
                 <ErrorMessage
-                    isVisibile={fieldsValidationHelper.company.isMessageError}
-                >{fieldsValidationHelper.company.messageValue}</ErrorMessage>
+                    isVisibile={fieldsValidationHelper.area.isMessageError}
+                >{fieldsValidationHelper.area.messageValue}</ErrorMessage>
             </TextInputContainer>
         </InputElement >
     );

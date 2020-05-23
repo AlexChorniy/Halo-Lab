@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import UploadSVG from '../../assets/img/folder-regular.svg';
 import { validationForm } from '../../assets/validation/validationHandler';
-import Company from './Company/Company';
+import CompanyElement from './Company/Company';
 import Staff from './Staff/Staff';
 import Description from './Description/Description';
 import Area from './Area/Area';
@@ -36,6 +35,7 @@ const Dashboard = () => {
     };
 
     const onFocus = event => {
+        console.log('onFocus');
         const name = event.target.name;
         const value = event.target.value;
         clientDB = { ...clientDB, [name]: { value, isCliked: true } };
@@ -52,6 +52,7 @@ const Dashboard = () => {
     };
 
     function inputClickHandler(event) {
+        console.log('inputClickHandler');
         const name = event.target.name;
         const value = event.target.value;
         clientDB = { ...clientDB, [name]: { value, isCliked: true } };
@@ -102,16 +103,16 @@ const Dashboard = () => {
     return (
         <Wrapper>
             <Top>
-                <Company
+                <CompanyElement
                     onFocus={onFocus}
                     onBlur={onBlur}
-                    onChange={inputClickHandler}
+                    inputClickHandler={inputClickHandler}
                     fieldsValidationHelper={fieldsValidationHelper}
                 />
                 <Staff
                     onFocus={onFocus}
                     onBlur={onBlur}
-                    onChange={inputClickHandler}
+                    inputClickHandler={inputClickHandler}
                     fieldsValidationHelper={fieldsValidationHelper}
                 />
             </Top>
@@ -119,13 +120,13 @@ const Dashboard = () => {
                 <Area
                     onFocus={onFocus}
                     onBlur={onBlur}
-                    onChange={inputClickHandler}
+                    inputClickHandler={inputClickHandler}
                     fieldsValidationHelper={fieldsValidationHelper}
                 />
                 <Description
                     onFocus={onFocus}
                     onBlur={onBlur}
-                    onChange={inputClickHandler}
+                    inputClickHandler={inputClickHandler}
                     fieldsValidationHelper={fieldsValidationHelper}
                 />
                 <Upload
