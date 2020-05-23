@@ -1,17 +1,16 @@
 import {
     start,
-    emptyFields,
     workWithElements,
     validateForm,
     validateAll
 } from './validationHelpers';
-export function validationForm(data) {
+export function validationForm(data, command) {
     const validationFields = {
         company: {
             regInf: { reg: '^[a-zA-Zа-яА-Я]*$', flag: 'ui' },
             messageEmpty: 'This field in required',
             messageInvalid: 'This field in required',
-            required: false,
+            required: true,
             errorColor: '#F15557',
         },
         staff: {
@@ -29,7 +28,7 @@ export function validationForm(data) {
             errorColor: '#F15557',
         },
         description: {
-            regInf: false,
+            regInf: { reg: '.*' },
             required: true,
             messageEmpty: 'This field in required',
             messageInvalid: 'This field in required',
@@ -37,18 +36,15 @@ export function validationForm(data) {
         },
     };
 
-    return function (controller) {
+    function commandsController(command) {
         const anchorObj = start(validationFields);
-        const { verifyElements, verifyValues } = workWithElements(anchorObj);
-        const validatedValues = validateForm(verifyValues, validationFields);
-        const commandController = command => {
-            const commands = {
-                validate: () => validateForm(data, validationFields),
-                empty: () => emptyFields(validatedValues, verifyElements),
-                validateAll: () => validateAll(validatedValues, verifyElements),
-            };
-            if (commands.hasOwnProperty(command)) return commands[command]();
+        const { verifyValues } = workWithElements(anchorObj);
+        const validatedForm = validateForm(verifyValues, validationFields, command);
+        const commands = {
+            validate: () => validateForm(data, validationFields),
+            validateAll: () => validateAll(validatedForm),
         };
-        return commandController(controller);
+        if (commands.hasOwnProperty(command)) return commands[command]();
     };
+    return commandsController(command);
 };

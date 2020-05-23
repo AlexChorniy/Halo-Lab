@@ -5,6 +5,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
+const NODE_ENV = process.env.NODE_ENV || 'development';
 const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
@@ -17,6 +18,7 @@ module.exports = {
         filename: '[name].[contenthash].js',
         publicPath: '/'
     },
+    mode: NODE_ENV,
     optimization: {
         splitChunks: {
             chunks: 'all'
@@ -32,7 +34,6 @@ module.exports = {
             '@comp': path.resolve(__dirname, 'dev/components'),
         }
     },
-    mode: 'development',
     plugins: [
         new HtmlWebpackPlugin({
             template: './index.html'
@@ -47,51 +48,52 @@ module.exports = {
         }),
     ],
     module: {
-        rules: [{
-            test: /\.(js|jsx)$/,
-            use: {
-                loader: 'babel-loader',
-                options: {
-                    presets: ['@babel/preset-env', '@babel/preset-react']
+        rules: [
+            {
+                test: /\.(js|jsx)$/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env', '@babel/preset-react']
+                    }
                 }
-            }
-        }, {
-            test: /\.(sa|sc|c)ss$/,
-            use: [
-                {
-                    loader: MiniCssExtractPlugin.loader,
-                    options: {
-                        hmr: process.env.NODE_ENV === 'development',
+            }, {
+                test: /\.(sa|sc|c)ss$/,
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            hmr: process.env.NODE_ENV === 'development',
+                        },
                     },
-                },
-                'css-loader',
-            ],
-        }, {
-            test: /\.(png|jpe?g|gif)$/,
-            use: [
-                {
-                    loader: 'file-loader',
-                    options: {
-                        name: 'images/[hash].[ext]',
+                    'css-loader',
+                ],
+            }, {
+                test: /\.(png|jpe?g|gif)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: 'images/[hash].[ext]',
+                        },
                     },
-                },
-            ],
-        }, {
-            test: /\.svg$/,
-            loader: 'svg-url-loader',
-            query: {
-                limit: '10000',
-            }
-        }, {
-            test: /\.(ttf|TTF|woff|woff2|eot)$/,
-            use: [
-                {
-                    loader: 'file-loader',
-                    options: {
-                        name: 'fonts/[hash].[ext]',
+                ],
+            }, {
+                test: /\.svg$/,
+                loader: 'svg-url-loader',
+                query: {
+                    limit: '10000',
+                }
+            }, {
+                test: /\.(ttf|TTF|woff|woff2|eot)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: 'fonts/[hash].[ext]',
+                        },
                     },
-                },
-            ],
-        },]
+                ],
+            },]
     }
 };

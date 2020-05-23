@@ -1,4 +1,6 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
+"use strict"
+
+import React, { useState, useEffect, useCallback } from 'react';
 import UploadSVG from '../../assets/img/folder-regular.svg';
 import { validationForm } from '../../assets/validation/validationHandler';
 
@@ -27,14 +29,16 @@ let clientDB = {};
 
 const Dashboard = () => {
     const [getFiles, setFiles] = useState([]);
-    const [getValue, setValue] = useState();
+    const [getValue, setValue] = useState('');
+    const [getName, setName] = useState('');
     const [getValid, setValid] = useState({});
     const clientWidth = window.innerWidth;
+    const { company, staff, area, description, companyFocus, staffFocus, areaFocus, descriptionFocus } = getValid;
 
     useEffect(() => {
-        const validResult = validationForm(clientDB)('validate');
+        const validResult = validationForm(clientDB, 'validate');
         setValid(Object.assign(getValid, validResult));
-    }, [getValue]);
+    }, [getValue, getName, getValid]);
 
     const fileSelectedHandler = event => {
         const newFile = event.target.files[0];
@@ -44,10 +48,11 @@ const Dashboard = () => {
 
     const onFocus = event => {
         const name = event.target.name;
+        const value = event.target.value;
+        clientDB = { ...clientDB, [name]: { value, isCliked: true } };
         if (getValid[name]) {
             setValid({ ...getValid, [`${name}Focus`]: true });
         }
-        event.target.value = "";
     };
 
     const onBlur = event => {
@@ -60,25 +65,56 @@ const Dashboard = () => {
     function inputClickHandler(event) {
         const name = event.target.name;
         const value = event.target.value;
-        clientDB = { ...clientDB, [name]: value };
-        console.log(clientDB);
-        setValue(name);
+        clientDB = { ...clientDB, [name]: { value, isCliked: true } };
+        setValue(value);
+        setName(name);
     };
 
     const submitButHandler = () => {
-        const validationAllResult = validationForm()('validateAll');
+        const validationAllResult = validationForm('', 'validateAll');
         if (validationAllResult.checkResult) {
-            console.log(clientDB);
+            for (const key in clientDB) {
+                if (clientDB.hasOwnProperty(key)) {
+                    delete clientDB[key]['isCliked'];
+                }
+            }
+            console.log('result', clientDB);
         } else {
             setValid(validationAllResult.bodyObj);
         }
+    };
+    const fieldsValidationHelper = {
+        company: {
+            required: company?.required && !companyFocus && !company?.valid && company?.isUsed,
+            boarderColor: !companyFocus && !company?.valid && company?.isUsed,
+            isMessageError: company?.required && !companyFocus && !company?.valid && company?.isUsed,
+            messageValue: company?.message,
+        },
+        staff: {
+            required: staff?.required && !staffFocus && !staff?.valid && staff?.isUsed,
+            boarderColor: !staffFocus && !staff?.valid && staff?.isUsed,
+            isMessageError: staff?.required && !staffFocus && !staff?.valid && staff?.isUsed,
+            messageValue: staff?.message,
+        },
+        area: {
+            required: area?.required && !areaFocus && !area?.valid && area?.isUsed,
+            boarderColor: !areaFocus && !area?.valid && area?.isUsed,
+            isMessageError: area?.required && !areaFocus && !area?.valid && area?.isUsed,
+            messageValue: area?.message,
+        },
+        description: {
+            required: description?.required && !descriptionFocus && !description?.valid && description?.isUsed,
+            boarderColor: !descriptionFocus && !description?.valid && description?.isUsed,
+            isMessageError: description?.required && !descriptionFocus && !description?.valid && description?.isUsed,
+            messageValue: description?.message,
+        },
     };
     return (
         <Wrapper>
             <Top>
                 <InputElement width='56%' onFocus={onFocus} onBlur={onBlur}>
                     <TitleContainer>
-                        <Title>Your company name <Required isVisibile={getValid.company && getValid.company.required}>*</Required></Title>
+                        <Title>Your company name <Required isVisibile={fieldsValidationHelper.company.required}>*</Required></Title>
                     </TitleContainer>
                     <TextInputContainer>
                         <TextInput
@@ -86,15 +122,15 @@ const Dashboard = () => {
                             width='100%' placeholder='Type text'
                             name='company'
                             autocomplete="off"
-                            borderColor={getValid.company && !getValid.companyFocus && !getValid.company.valid} />
+                            borderColor={fieldsValidationHelper.company.boarderColor} />
                         <ErrorMessage
-                            isVisibile={getValid.company && getValid.company.isEmpty}
-                        >{getValid.company && getValid.company.message}</ErrorMessage>
+                            isVisibile={fieldsValidationHelper.company.isMessageError}
+                        >{fieldsValidationHelper.company.messageValue}</ErrorMessage>
                     </TextInputContainer>
                 </InputElement >
                 <InputElement width='41%' onFocus={onFocus} onBlur={onBlur}>
                     <TitleContainer>
-                        <Title>Number of people <Required isVisibile={getValid.staff?.required}>*</Required></Title>
+                        <Title>Number of people <Required isVisibile={fieldsValidationHelper.staff.required}>*</Required></Title>
                     </ TitleContainer>
                     <TextInputContainer>
                         <TextInput
@@ -102,11 +138,11 @@ const Dashboard = () => {
                             width='100%' placeholder='1-99'
                             name='staff'
                             autocomplete="off"
-                            borderColor={getValid.staff && !getValid.staffFocus && !getValid.staff.valid} />
+                            borderColor={fieldsValidationHelper.staff.boarderColor} />
                         <ErrorMessage
-                            isVisibile={getValid.staff?.isEmpty || getValid.staff?.valid}
+                            isVisibile={fieldsValidationHelper.staff.isMessageError}
                         >
-                            {getValid.staff && getValid.staff.message}
+                            {fieldsValidationHelper.staff.messageValue}
                         </ErrorMessage>
                     </TextInputContainer>
                 </ InputElement>
@@ -114,7 +150,7 @@ const Dashboard = () => {
             <Center>
                 <InputElement width='100%' marginTopMob='32px' onFocus={onFocus} onBlur={onBlur}>
                     <TitleContainer>
-                        <Title>Business area <Required isVisibile={getValid.area?.isEmpty}>*</Required></Title>
+                        <Title>Business area <Required isVisibile={fieldsValidationHelper.area.required}>*</Required></Title>
                     </ TitleContainer>
                     <TextInputContainer>
                         <TextInput
@@ -122,31 +158,31 @@ const Dashboard = () => {
                             name='area'
                             width='100%'
                             placeholder='Design, Marketing, Development, etc.'
-                            borderColor={getValid.area && !getValid.areaFocus && !getValid.area.valid}
+                            borderColor={fieldsValidationHelper.area.boarderColor}
                         />
-                        <ErrorMessage isVisibile={getValid.area?.isEmpty}>
-                            {getValid.area && getValid.area.message}
+                        <ErrorMessage isVisibile={fieldsValidationHelper.area.isMessageError}>
+                            {fieldsValidationHelper.area.messageValue}
                         </ErrorMessage>
                     </TextInputContainer>
                 </InputElement>
                 <InputElement marginTop="17px" marginTopMob="10px" width='100%' onFocus={onFocus} onBlur={onBlur} >
                     <TitleContainer>
-                        <Title>Description <Required isVisibile={getValid.description?.isEmpty}>*</Required></Title>
+                        <Title>Description <Required isVisibile={fieldsValidationHelper.description.required}>*</Required></Title>
                     </ TitleContainer>
                     <TextInputContainer onChange={inputClickHandler} width='100%' height='168px' >
                         <TextArea
                             width='96%'
                             height='168px'
                             placeholder='Type text'
-                            borderColor={!getValid.descriptionFocus && getValid.description?.isEmpty}
+                            borderColor={fieldsValidationHelper.description.boarderColor}
                             name='description'
                         />
                     </TextInputContainer>
                     <ErrorMessage
-                        isVisibile={getValid.description?.isEmpty}
+                        isVisibile={fieldsValidationHelper.description.isMessageError}
                         marginTop='37px'
                     >
-                        {getValid.description && getValid.description.message}
+                        {fieldsValidationHelper.description.messageValue}
                     </ErrorMessage>
                 </InputElement>
                 <UploadContainer>
