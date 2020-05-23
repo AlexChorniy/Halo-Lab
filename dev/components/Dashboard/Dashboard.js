@@ -72,6 +72,7 @@ const Dashboard = () => {
 
     const submitButHandler = () => {
         const validationAllResult = validationForm('', 'validateAll');
+        clientDB = { ...clientDB, files: getFiles.length };
         if (validationAllResult.checkResult) {
             for (const key in clientDB) {
                 if (clientDB.hasOwnProperty(key)) {
