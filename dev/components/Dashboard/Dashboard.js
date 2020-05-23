@@ -1,6 +1,6 @@
 "use strict"
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import UploadSVG from '../../assets/img/folder-regular.svg';
 import { validationForm } from '../../assets/validation/validationHandler';
 

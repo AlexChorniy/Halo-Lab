@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import {
     BrowserRouter as Router,
@@ -16,11 +16,12 @@ import GlobalStyles from './assets/global.styles';
 import styled from "styled-components";
 
 const App = () => {
+    const [getCheckBox, sendCheckBox] = useState({ box: 'one' });
     return (
         <>
             <Router>
                 <Main>
-                    <Header />
+                    <Header sendBox={sendCheckBox} getBox={getCheckBox} />
                     <Switch>
                         <Route path="/about">
                             <About />
