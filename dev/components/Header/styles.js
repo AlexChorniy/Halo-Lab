@@ -32,7 +32,7 @@ export const NavLink = styled.div`
     font-family: OpenSansBold;
     min-width: 30px;
     min-height: 30px;
-    background: #1E34A5;
+    background: ${({ background }) => background ? '#DA3F5B' : '#1E34A5'};
     border-radius: 50%;
     display: flex;
     justify-content: center;
