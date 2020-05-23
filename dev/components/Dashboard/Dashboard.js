@@ -35,7 +35,6 @@ const Dashboard = () => {
     };
 
     const onFocus = event => {
-        console.log('onFocus');
         const name = event.target.name;
         const value = event.target.value;
         clientDB = { ...clientDB, [name]: { value, isCliked: true } };
@@ -52,7 +51,6 @@ const Dashboard = () => {
     };
 
     function inputClickHandler(event) {
-        console.log('inputClickHandler');
         const name = event.target.name;
         const value = event.target.value;
         clientDB = { ...clientDB, [name]: { value, isCliked: true } };
