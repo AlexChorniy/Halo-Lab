@@ -2,6 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 
 import OpenSansBold from './Fonts/Open_Sans/OpenSans-Bold.ttf';
 import OpenSansRegular from './Fonts/Open_Sans/OpenSans-Regular.ttf';
+import OpenSansItalic from './Fonts/Open_Sans/OpenSans-Italic.ttf';
 
 export default createGlobalStyle`
     @font-face {
@@ -13,5 +14,10 @@ export default createGlobalStyle`
         font-family: 'OpenSansRegular';
         src: local('OpenSans'), local('OpenSansRegular'),
         url(${OpenSansRegular}) format('ttf');
+    };
+    @font-face {
+        font-family: 'OpenSansItalic';
+        src: local('OpenSans'), local('OpenSansRegular'),
+        url(${OpenSansItalic}) format('ttf');
     };
 `;

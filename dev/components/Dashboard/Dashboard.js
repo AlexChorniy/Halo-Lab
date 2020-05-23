@@ -148,7 +148,7 @@ const Dashboard = () => {
                 </ InputElement>
             </Top>
             <Center>
-                <InputElement width='100%' marginTopMob='32px' onFocus={onFocus} onBlur={onBlur}>
+                <InputElement width='100%' marginTopMob='16px' onFocus={onFocus} onBlur={onBlur}>
                     <TitleContainer>
                         <Title>Business area <Required isVisibile={fieldsValidationHelper.area.required}>*</Required></Title>
                     </ TitleContainer>
@@ -165,22 +165,22 @@ const Dashboard = () => {
                         </ErrorMessage>
                     </TextInputContainer>
                 </InputElement>
-                <InputElement marginTop="17px" marginTopMob="10px" width='100%' onFocus={onFocus} onBlur={onBlur} >
+                <InputElement marginTop="20px" marginTopMob="10px" onFocus={onFocus} onBlur={onBlur} >
                     <TitleContainer>
                         <Title>Description <Required isVisibile={fieldsValidationHelper.description.required}>*</Required></Title>
                     </ TitleContainer>
-                    <TextInputContainer onChange={inputClickHandler} width='100%' height='168px' >
+                    <TextInputContainer>
                         <TextArea
-                            width='96%'
-                            height='168px'
                             placeholder='Type text'
+                            onChange={inputClickHandler}
                             borderColor={fieldsValidationHelper.description.boarderColor}
                             name='description'
+                            width="100%"
                         />
                     </TextInputContainer>
                     <ErrorMessage
                         isVisibile={fieldsValidationHelper.description.isMessageError}
-                        marginTop='37px'
+                        marginTop='8px'
                     >
                         {fieldsValidationHelper.description.messageValue}
                     </ErrorMessage>

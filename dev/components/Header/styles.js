@@ -1,12 +1,13 @@
 import styled from "styled-components";
 
 export const PageTitleText = styled.h2`
-    font-family: OpenSansBold;
+    font-family: OpenSansItalic;
     font-style: normal;
     font-weight: bold;
     font-size: 40px;
     color: #FFFFFF;
     text-align: center;
+    letter-spacing: 0.05em;
     @media (max-width: 831px) {
         font-size: 35px;
     }
@@ -29,7 +30,7 @@ export const NavLinkContainer = styled.div`
 `;
 
 export const NavLink = styled.div`
-    font-family: OpenSansBold;
+    font-family: OpenSansItalic;
     min-width: 30px;
     min-height: 30px;
     background: ${({ background }) => background ? '#DA3F5B' : '#1E34A5'};
@@ -40,7 +41,7 @@ export const NavLink = styled.div`
 `;
 
 export const NavLinkValue = styled.div`
-    font-family: OpenSansBold;
+    font-family: OpenSansItalic;
     font-style: normal;
     font-weight: bold;
     font-size: 18px;
