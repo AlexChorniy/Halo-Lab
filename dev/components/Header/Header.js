@@ -15,25 +15,28 @@ const Header = ({ sendBox, getBox }) => {
         <Navigation>
             <PageTitleText>Your first project</PageTitleText>
             <NavLinkContainer>
-                <NavLink onClick={() => sendBox({ box: 'one' })} background={getBox?.box === 'one'}>
-                    <Link to="/" style={{ textDecoration: 'none' }}>
+                <Link to="/" style={{ textDecoration: 'none' }}>
+                    <NavLink onClick={() => sendBox({ box: 'one' })} background={getBox?.box === 'one'}>
                         <NavLinkValue>1</NavLinkValue>
-                    </Link>
-                </NavLink>
+                    </NavLink>
+                </Link>
                 <DecorationLine />
-                <NavLink onClick={() => sendBox({ box: 'two' })} background={getBox?.box === 'two'}>
-                    <Link to="/about" style={{ textDecoration: 'none' }}>
+                <Link to="/about" style={{ textDecoration: 'none' }}>
+                    <NavLink onClick={() => sendBox({ box: 'two' })} background={getBox?.box === 'two'}>
+
+
                         <NavLinkValue>2</NavLinkValue>
-                    </Link>
-                </NavLink>
+
+                    </NavLink>
+                </Link>
                 <DecorationLine />
-                <NavLink onClick={() => sendBox({ box: 'three' })} background={getBox?.box === 'three'}>
-                    <Link to="/dashboard" style={{ textDecoration: 'none' }}>
+                <Link to="/dashboard" style={{ textDecoration: 'none' }}>
+                    <NavLink onClick={() => sendBox({ box: 'three' })} background={getBox?.box === 'three'}>
                         <NavLinkValue>3</NavLinkValue>
-                    </Link>
-                </NavLink>
+                    </NavLink>
+                </Link>
             </NavLinkContainer>
-        </Navigation>
+        </Navigation >
     );
 };
 
