@@ -51,6 +51,9 @@ const Dashboard = () => {
         if (getValid[name]) {
             setValid({ ...getValid, [`${name}Focus`]: false });
         }
+        if (!getValid[name]?.valid) {
+            document.getElementsByName(name)[0].value = '';
+        }
 
     };
 
