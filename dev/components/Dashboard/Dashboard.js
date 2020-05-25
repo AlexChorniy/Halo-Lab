@@ -43,9 +43,6 @@ const Dashboard = () => {
         }
         if (!getValid[name]?.valid) {
             document.getElementsByName(name)[0].value = '';
-            console.log('test', test);
-
-            // clientDB = { ...clientDB, [name]: { value: '' } };
         }
     };
 
