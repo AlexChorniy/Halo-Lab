@@ -68,15 +68,22 @@ export const TextInputContainer = styled.div`
 export const TextInput = styled.input.attrs(() => ({
     autocomplete: "off"
 }))`
+    width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	position: absolute;
+	z-index: -1;
+`;
+
+export const TextInputLabel = styled.label`
+    display: block;
     margin-top: 8px;
     height: 48px;
-    width: ${({ width }) => width};
+    width: ${({ width }) => width || '100%'};
     background: #F9F9F9;
     border-radius: 8px;
     padding-left: 16px;
-    border-color: ${({ borderColor }) => borderColor ? '#F15557' : '#F9F9F9'} ;
-    border-width: 1px;
-    border-style: 'solid';
+    border: 1px solid ${({ brdColour }) => brdColour ? '#F15557' : '#F9F9F9'};
     box-sizing: border-box;
     word-break: normal;
     outline: none;
@@ -85,9 +92,10 @@ export const TextInput = styled.input.attrs(() => ({
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
-    @media (max-width: 831px) {
-        padding-left: 5px;
-        padding-right: 5px;
+    line-height: 48px;
+    @media (min-width: 831px) {
+        padding-left: 16px;
+        padding-right: 16px;
     }
 `;
 
@@ -117,7 +125,7 @@ export const TextArea = styled.textarea`
     width: ${({ width }) => width};
     background: #F9F9F9;
     border-radius: 8px;
-    border-color: ${({ borderColor }) => borderColor ? '#F15557' : '#F9F9F9'} ;
+    border-color: ${({ brdColor }) => brdColor ? '#F15557' : '#F9F9F9'} ;
     padding-left: 16px;
     padding-top: 14px;
     outline: none;

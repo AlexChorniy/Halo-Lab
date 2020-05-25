@@ -24,7 +24,7 @@ export const NavLinkContainer = styled.div`
     align-items: center;
     padding-top: 20px;
     height: 101px;
-    @media (max-width: 390px) {
+    @media (max-width: 435px) {
         padding-top: 0;
     }
 `;

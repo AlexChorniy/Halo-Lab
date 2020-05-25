@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import {
     InputElement,
@@ -8,30 +8,45 @@ import {
     TextInputContainer,
     ErrorMessage,
     Required,
+    TextInputLabel
 } from '../styles';
 
 const Staff = ({
     onFocus,
     onBlur,
     inputClickHandler,
-    fieldsValidationHelper
+    fieldsValidationHelper: staff,
+    getValue
 }) => {
+    const defaultText = '1-99';
+    const [getText, setText] = useState(defaultText);
+    const isEmpty = /^\s*$/.test(getValue);
+    useEffect(() => {
+        const value = isEmpty || !getValue ? defaultText : getValue;
+        setText(value);
+    }, [getValue]);
     return (
         <InputElement width='41%' onFocus={onFocus} onBlur={onBlur}>
             <TitleContainer>
-                <Title>Number of people <Required isVisibile={fieldsValidationHelper.staff.required}>*</Required></Title>
+                <Title>Number of people <Required isVisibile={staff?.required}>*</Required></Title>
             </ TitleContainer>
             <TextInputContainer>
-                <TextInput
-                    onChange={inputClickHandler}
-                    width='100%' placeholder='1-99'
-                    name='staff'
-                    autocomplete="off"
-                    borderColor={fieldsValidationHelper.staff.boarderColor} />
-                <ErrorMessage
-                    isVisibile={fieldsValidationHelper.staff.isMessageError}
+                <TextInputLabel
+                    brdColour={staff?.borderColor}
+                    htmlFor='staff'
                 >
-                    {fieldsValidationHelper.staff.messageValue}
+                    {getText}
+                    <TextInput
+                        type="text"
+                        onChange={inputClickHandler}
+                        name='staff'
+                        id="staff"
+                    />
+                </TextInputLabel>
+                <ErrorMessage
+                    isVisibile={staff?.isMessageError}
+                >
+                    {staff?.messageValue}
                 </ErrorMessage>
             </TextInputContainer>
         </ InputElement>

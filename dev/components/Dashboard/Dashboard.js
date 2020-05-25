@@ -29,14 +29,14 @@ const Dashboard = () => {
     }, [getValue, getName, getValid]);
 
     const fileSelectedHandler = event => {
-        const newFile = event.target.files[0];
+        const newFile = event.target?.files[0];
         const obj = [...getFiles, newFile];
         setFiles([...getFiles, obj]);
     };
 
     const onFocus = event => {
-        const name = event.target.name;
-        const value = event.target.value;
+        const name = event.target?.name;
+        const value = event.target?.value;
         clientDB = { ...clientDB, [name]: { value, isCliked: true } };
         if (getValid[name]) {
             setValid({ ...getValid, [`${name}Focus`]: true });
@@ -47,15 +47,16 @@ const Dashboard = () => {
     };
 
     const onBlur = event => {
-        const name = event.target.name;
+        const name = event.target?.name;
         if (getValid[name]) {
             setValid({ ...getValid, [`${name}Focus`]: false });
         }
+
     };
 
     function inputClickHandler(event) {
-        const name = event.target.name;
-        const value = event.target.value;
+        const name = event.target?.name;
+        const value = event.target?.value;
         clientDB = { ...clientDB, [name]: { value, isCliked: true } };
         setValue(value);
         setName(name);
@@ -78,25 +79,25 @@ const Dashboard = () => {
     const fieldsValidationHelper = {
         company: {
             required: company?.required && !companyFocus && !company?.valid && company?.isUsed,
-            boarderColor: !companyFocus && !company?.valid && company?.isUsed,
+            borderColor: !companyFocus && !company?.valid && company?.isUsed,
             isMessageError: company?.required && !companyFocus && !company?.valid && company?.isUsed,
             messageValue: company?.message,
         },
         staff: {
             required: staff?.required && !staffFocus && !staff?.valid && staff?.isUsed,
-            boarderColor: !staffFocus && !staff?.valid && staff?.isUsed,
+            borderColor: !staffFocus && !staff?.valid && staff?.isUsed,
             isMessageError: staff?.required && !staffFocus && !staff?.valid && staff?.isUsed,
             messageValue: staff?.message,
         },
         area: {
             required: area?.required && !areaFocus && !area?.valid && area?.isUsed,
-            boarderColor: !areaFocus && !area?.valid && area?.isUsed,
+            borderColor: !areaFocus && !area?.valid && area?.isUsed,
             isMessageError: area?.required && !areaFocus && !area?.valid && area?.isUsed,
             messageValue: area?.message,
         },
         description: {
             required: description?.required && !descriptionFocus && !description?.valid && description?.isUsed,
-            boarderColor: !descriptionFocus && !description?.valid && description?.isUsed,
+            borderColor: !descriptionFocus && !description?.valid && description?.isUsed,
             isMessageError: description?.required && !descriptionFocus && !description?.valid && description?.isUsed,
             messageValue: description?.message,
         },
@@ -108,13 +109,15 @@ const Dashboard = () => {
                     onFocus={onFocus}
                     onBlur={onBlur}
                     inputClickHandler={inputClickHandler}
-                    fieldsValidationHelper={fieldsValidationHelper}
+                    fieldsValidationHelper={fieldsValidationHelper?.company}
+                    getValue={clientDB['company']?.value}
                 />
                 <Staff
                     onFocus={onFocus}
                     onBlur={onBlur}
                     inputClickHandler={inputClickHandler}
-                    fieldsValidationHelper={fieldsValidationHelper}
+                    fieldsValidationHelper={fieldsValidationHelper?.staff}
+                    getValue={clientDB['staff']?.value}
                 />
             </Top>
             <Center>
@@ -122,13 +125,14 @@ const Dashboard = () => {
                     onFocus={onFocus}
                     onBlur={onBlur}
                     inputClickHandler={inputClickHandler}
-                    fieldsValidationHelper={fieldsValidationHelper}
+                    fieldsValidationHelper={fieldsValidationHelper?.area}
+                    getValue={clientDB['area']?.value}
                 />
                 <Description
                     onFocus={onFocus}
                     onBlur={onBlur}
                     inputClickHandler={inputClickHandler}
-                    fieldsValidationHelper={fieldsValidationHelper}
+                    fieldsValidationHelper={fieldsValidationHelper?.description}
                 />
                 <Upload
                     fileSelectedHandler={fileSelectedHandler}
@@ -137,6 +141,7 @@ const Dashboard = () => {
             </Center>
             <Bottom>
                 <Button onClick={submitButHandler}>Submit</Button>
+
             </Bottom>
         </Wrapper>
     );

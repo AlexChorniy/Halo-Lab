@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import {
     InputElement,
@@ -8,30 +8,44 @@ import {
     TextInputContainer,
     ErrorMessage,
     Required,
+    TextInputLabel
 } from '../styles';
 
 const Area = ({
     onFocus,
     onBlur,
     inputClickHandler,
-    fieldsValidationHelper
+    fieldsValidationHelper: area,
+    getValue
 }) => {
+    const defaultText = 'Type text';
+    const [getText, setText] = useState(defaultText);
+    const isEmpty = /^\s*$/.test(getValue);
+    useEffect(() => {
+        const value = isEmpty || !getValue ? defaultText : getValue;
+        setText(value);
+    }, [getValue]);
     return (
         <InputElement width='100%' onFocus={onFocus} onBlur={onBlur}>
             <TitleContainer>
-                <Title>Business area <Required isVisibile={fieldsValidationHelper.area.required}>*</Required></Title>
+                <Title>Business area <Required isVisibile={area?.required}>*</Required></Title>
             </TitleContainer>
             <TextInputContainer>
-                <TextInput
-                    onChange={inputClickHandler}
-                    width='100%'
-                    placeholder='Type text'
-                    name='area'
-                    autocomplete="off"
-                    borderColor={fieldsValidationHelper.area.boarderColor} />
+                <TextInputLabel
+                    brdColour={area.borderColor}
+                    htmlFor='area'
+                >
+                    {getText}
+                    <TextInput
+                        type="text"
+                        onChange={inputClickHandler}
+                        name='area'
+                        id="area"
+                    />
+                </TextInputLabel>
                 <ErrorMessage
-                    isVisibile={fieldsValidationHelper.area.isMessageError}
-                >{fieldsValidationHelper.area.messageValue}</ErrorMessage>
+                    isVisibile={area?.isMessageError}
+                >{area?.messageValue}</ErrorMessage>
             </TextInputContainer>
         </InputElement >
     );

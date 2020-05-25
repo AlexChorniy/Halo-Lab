@@ -23,10 +23,7 @@ const Header = ({ sendBox, getBox }) => {
                 <DecorationLine />
                 <Link to="/about" style={{ textDecoration: 'none' }}>
                     <NavLink onClick={() => sendBox({ box: 'two' })} background={getBox?.box === 'two'}>
-
-
                         <NavLinkValue>2</NavLinkValue>
-
                     </NavLink>
                 </Link>
                 <DecorationLine />

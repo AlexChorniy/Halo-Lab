@@ -14,27 +14,27 @@ const Description = ({
     onFocus,
     onBlur,
     inputClickHandler,
-    fieldsValidationHelper
+    fieldsValidationHelper: description
 }) => {
     return (
         <InputElement marginTop="20px" marginTopMob="10px" onFocus={onFocus} onBlur={onBlur} >
             <TitleContainer>
-                <Title>Description <Required isVisibile={fieldsValidationHelper.description.required}>*</Required></Title>
+                <Title>Description <Required isVisibile={description?.required}>*</Required></Title>
             </ TitleContainer>
             <TextInputContainer>
                 <TextArea
                     placeholder='Type text'
                     onChange={inputClickHandler}
-                    borderColor={fieldsValidationHelper.description.boarderColor}
+                    brdColor={description?.borderColor}
                     name='description'
                     width="100%"
                 />
             </TextInputContainer>
             <ErrorMessage
-                isVisibile={fieldsValidationHelper.description.isMessageError}
+                isVisibile={description.isMessageError}
                 marginTop='8px'
             >
-                {fieldsValidationHelper.description.messageValue}
+                {description?.messageValue}
             </ErrorMessage>
         </InputElement>
     );
