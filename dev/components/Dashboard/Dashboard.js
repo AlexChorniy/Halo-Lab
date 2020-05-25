@@ -41,6 +41,12 @@ const Dashboard = () => {
         if (getValid[name]) {
             setValid({ ...getValid, [`${name}Focus`]: true });
         }
+        if (!getValid[name]?.valid) {
+            document.getElementsByName(name)[0].value = '';
+            console.log('test', test);
+
+            // clientDB = { ...clientDB, [name]: { value: '' } };
+        }
     };
 
     const onBlur = event => {
