@@ -48,7 +48,7 @@ const Dashboard = () => {
 
     const onBlur = event => {
         const name = event.target?.name;
-        if (getValid[name]) {
+        if (getValid[name] || getValid[name]?.valid) {
             setValid({ ...getValid, [`${name}Focus`]: false });
         }
         if (!getValid[name]?.valid) {
